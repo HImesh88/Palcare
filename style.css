@@ -125,6 +125,10 @@ main h2{
     nav .menu{
         display: block;
     }
+
+    nav{
+        gap: 100px;
+    }
 }
 
 

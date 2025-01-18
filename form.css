@@ -104,4 +104,9 @@ nav .logo{
     .form-container {
       padding: 15px;
     }
+    
+    nav{
+      gap: 200px;
+  }
+  
   }
