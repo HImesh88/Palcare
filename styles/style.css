@@ -1,0 +1,25 @@
+#heart{
+    transition: 0.5s ease-in-out ;
+    animation: beat 1s infinite ;
+}
+
+@keyframes beat {
+    0%{
+        scale: 1;
+    }
+    50%{
+        scale: 1.1;
+    }
+    100%{
+        scale: 0.9;
+    }
+}
+
+#bstrip img {
+    margin-top: -10px; /* Adjust if needed */
+    display: block;
+  }
+  
+#home{
+    background: linear-gradient(to bottom, rgb(157,7,18), transparent);
+}
