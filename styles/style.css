@@ -23,3 +23,8 @@
 #home{
     background: linear-gradient(to bottom, rgb(157,7,18), transparent);
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
