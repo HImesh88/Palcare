@@ -60,9 +60,11 @@
     <label for="phone" class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-500">Phone Number (123-456-7890)</label>
   </div>
 
-  <button type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+  <button type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Submit</button>
 </form>
+<button  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" id="donback">Back</button>
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $server = "localhost";
     $username = "root";
     $password = "";
@@ -83,8 +85,17 @@
     $sql = "INSERT INTO doner_details (name, address, age, gender, phone, blood_group) VALUES ('$name', '$address', '$age', '$gender', '$phone', '$blood_group')";
     mysqli_query($conn,$sql);
 
-    mysqli_close($conn)
+    mysqli_close($conn);
+  }
 ?>
+<script>
+    const backButton = document.getElementById('donback');
 
+    if (backButton) {
+        backButton.addEventListener('click', function() {
+            window.location.href = "../index.html";
+        });
+    }
+</script>
 </body>
 </html>
