@@ -1,3 +1,7 @@
+<?php
+  include "../connection/conn.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
@@ -65,12 +69,7 @@
 <button  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" id="donback">Back</button>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $db = "palcare";
 
-    $conn = mysqli_connect($server, $username, $password , $db);
     if(!$conn){
         die("Conncetion failed". mysqli_connect_error());
     }
@@ -82,8 +81,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age = $_POST['age'];
     $blood_group = $_POST['blood_group'];
 
-    $sql = "INSERT INTO doner_details (name, address, age, gender, phone, blood_group) VALUES ('$name', '$address', '$age', '$gender', '$phone', '$blood_group')";
-    mysqli_query($conn,$sql);
+    $stmt = $conn->prepare("INSERT INTO doner_details (name, address, age, gender, phone, blood_group) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssisss", $name, $address, $age, $gender, $phone, $blood_group);
+    $stmt->execute();
+    $stmt->close();
+
 
     mysqli_close($conn);
   }
