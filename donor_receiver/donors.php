@@ -15,7 +15,24 @@
    <div class="w-full flex justify-between items-center">
     <p class="text-xl md:text-3xl text-white font-extrabold">Our Donors</p>
     <p><i class="fa-solid fa-arrow-left text-white text-md cursor-pointer" id="donback"> Back</i></p>
-</div>
+   </div> 
+        
+        <!-- <form class="max-w-sm mx-auto flex gap-10" action="donors.php" method="POST">
+          <label for="underline_select" class="sr-only">Underline select</label>
+          <select id="underline_select" class="block py-2.5 px-7 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer " name="selected_bloodgrp">
+              <option value="" selected disabled>Select Blood Group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+          </select>
+          <button type="submit" class="bg-blue-800 text-white font-semibold px-3 py-1 rounded-xl cursor-pointer">Search</button>
+        </form> -->
+    
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mt-4">
     <?php
         $server = "localhost";
@@ -35,7 +52,7 @@
             $unmaxid = mysqli_fetch_array($idres);
         }
          $maxid = $unmaxid['0'];
-        //data fetching
+        //datafetching
         for($id = 1; $id <= $maxid;$id++){
             $getnameqr = "SELECT * FROM doner_details WHERE id=$id";
             $result = mysqli_query($conn, $getnameqr);
@@ -59,7 +76,7 @@
                 '.$bloodgrp.'
                 </p>
             </div>
-            <a href="https://wa.me/'.$phone.'?text=Hey!%20Could%20you%20please%20help%20me%20with%20blood" target="_blank"
+            <a href="https://wa.me/+977'.$phone.'?text=Hey!%20Could%20you%20please%20help%20me%20with%20blood" target="_blank"
                class="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white bg-gradient-to-r from-green-500 to-green-700 rounded-lg hover:from-green-600 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-green-500" data-ripple-light="true">
                 <i class="fab fa-whatsapp mr-2"></i> WhatsApp
             </a>
