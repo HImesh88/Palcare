@@ -1,3 +1,8 @@
+<?php
+  include "../connection/conn.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,12 +40,7 @@
     
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mt-4">
     <?php
-        $server = "localhost";
-        $username = "root";
-        $password = "";
-        $db = "palcare";
-    
-        $conn = mysqli_connect($server, $username, $password , $db);
+        
         if(!$conn){
             die("Conncetion failed". mysqli_connect_error());
         }
