@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Donors</title>
+  <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">k
   <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
@@ -30,6 +31,7 @@
                 $phone = $row['phone'];
                 $address = $row['address'];
                 $bloodgrp = $row['blood_group'];
+                $age = $row['age'];
 
                 echo '
                      <div class="w-full max-w-md bg-white rounded-2xl shadow-lg overflow-hidden dark:bg-gray-800 dark:border dark:border-gray-700 flex flex-col justify-between p-6 transition-transform transform hover:scale-105 duration-300">
@@ -42,6 +44,9 @@
                 </p>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 text-center">
                 '.$bloodgrp.'
+                </p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 text-center">
+                Age = ' .$age.'
                 </p>
             </div>
             <a href="https://wa.me/+977'.$phone.'?text=Hey!%20Could%20you%20please%20help%20me%20with%20blood" target="_blank"
