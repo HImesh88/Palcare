@@ -13,58 +13,26 @@
 
 <body class="flex items-center  min-h-screen bg-gradient-to-tr from-gray-100 via-gray-200 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-6 flex-col">
    <div class="w-full flex justify-between items-center">
-    <p class="text-xl md:text-3xl text-white font-extrabold">Our Donors</p>
-    <p><i class="fa-solid fa-arrow-left text-white text-md cursor-pointer" id="donback"> Back</i></p>
+    <p class="text-xl md:text-3xl text-green-700 font-extrabold">Our Donors</p>
+    <p><i class="fa-solid fa-arrow-left text-green-700 text-md cursor-pointer" id="donback"> Back</i></p>
    </div> 
-        
-        <!-- <form class="max-w-sm mx-auto flex gap-10" action="donors.php" method="POST">
-          <label for="underline_select" class="sr-only">Underline select</label>
-          <select id="underline_select" class="block py-2.5 px-7 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer " name="selected_bloodgrp">
-              <option value="" selected disabled>Select Blood Group</option>
-              <option value="A+">A+</option>
-              <option value="A-">A-</option>
-              <option value="B+">B+</option>
-              <option value="B-">B-</option>
-              <option value="O+">O+</option>
-              <option value="O-">O-</option>
-              <option value="AB+">AB+</option>
-              <option value="AB-">AB-</option>
-          </select>
-          <button type="submit" class="bg-blue-800 text-white font-semibold px-3 py-1 rounded-xl cursor-pointer">Search</button>
-        </form> -->
     
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mt-4">
     <?php
-        $server = "localhost";
-        $username = "root";
-        $password = "";
-        $db = "palcare";
-    
-        $conn = mysqli_connect($server, $username, $password , $db);
-        if(!$conn){
-            die("Conncetion failed". mysqli_connect_error());
-        }
-        
-        //Max id fetching
-        $maxidqr = "SELECT id FROM doner_details ORDER BY id DESC";
-        $idres = mysqli_query($conn, $maxidqr);
-        if($idres){
-            $unmaxid = mysqli_fetch_array($idres);
-        }
-         $maxid = $unmaxid['0'];
-        //datafetching
-        for($id = 1; $id <= $maxid;$id++){
-            $getnameqr = "SELECT * FROM doner_details WHERE id=$id";
-            $result = mysqli_query($conn, $getnameqr);
-            if($result){
-                $arr_result = mysqli_fetch_array($result);
-             }
-             $name = $arr_result['name'];
-             $address = $arr_result['address'];
-             $phone = $arr_result['phone'];
-             $bloodgrp = $arr_result['blood_group'];
-             echo '
-             <div class="w-full max-w-md bg-white rounded-2xl shadow-lg overflow-hidden dark:bg-gray-800 dark:border dark:border-gray-700 flex flex-col justify-between p-6 transition-transform transform hover:scale-105 duration-300">
+        include '../connections/conn.php';
+
+        $query = "SELECT * FROM doner_details WHERE status = 'approved'";
+        $res = mysqli_query($conn, $query);
+        if ($res) {
+            while($row = mysqli_fetch_array($res)) {
+
+                $name = $row['name'];
+                $phone = $row['phone'];
+                $address = $row['address'];
+                $bloodgrp = $row['blood_group'];
+
+                echo '
+                     <div class="w-full max-w-md bg-white rounded-2xl shadow-lg overflow-hidden dark:bg-gray-800 dark:border dark:border-gray-700 flex flex-col justify-between p-6 transition-transform transform hover:scale-105 duration-300">
             <div>
                 <h5 class="text-2xl font-extrabold tracking-wide text-gray-900 dark:text-white mb-2 text-center">
                 '.$name.'
@@ -81,9 +49,11 @@
                 <i class="fab fa-whatsapp mr-2"></i> WhatsApp
             </a>
         </div>
-        ';
-            
+                ';
+            }
         }
+        
+        
 
     ?>
   </div>

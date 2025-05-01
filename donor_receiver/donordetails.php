@@ -62,7 +62,6 @@
 
   <button type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Submit</button>
 </form>
-<button  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" id="donback">Back</button>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $server = "localhost";
@@ -82,20 +81,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age = $_POST['age'];
     $blood_group = $_POST['blood_group'];
 
-    $sql = "INSERT INTO doner_details (name, address, age, gender, phone, blood_group) VALUES ('$name', '$address', '$age', '$gender', '$phone', '$blood_group')";
+    $sql = "INSERT INTO doner_details (name, address, age, gender, phone, blood_group, status) VALUES ('$name', '$address', '$age', '$gender', '$phone', '$blood_group','pending')";
     mysqli_query($conn,$sql);
-
+    echo "<script>alert('Details submitted successfully!');</script>";
+    echo "<script>window.location.href = 'donors.php';</script>";
     mysqli_close($conn);
   }
 ?>
-<script>
-    const backButton = document.getElementById('donback');
-
-    if (backButton) {
-        backButton.addEventListener('click', function() {
-            window.location.href = "../index.html";
-        });
-    }
-</script>
 </body>
 </html>
