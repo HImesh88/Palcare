@@ -77,7 +77,7 @@ session_start();
         <tbody>
             <?php
             $pending = "pending";
-            $query = "SELECT * FROM doner_details WHERE status='$pending'"; // Adjust the query to fetch pending users
+            $query = "SELECT * FROM doner_details WHERE status='$pending'"; 
             $result = mysqli_query($conn, $query);
             if ($result && mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
